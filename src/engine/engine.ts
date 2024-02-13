@@ -37,10 +37,17 @@ export function initEngine({entities, map}: {entities: Entities, map: MapRef}) {
     play();
 }
 
-export function pause() {
-    clearInterval(interval);
+function play() {
+    if (!interval) {
+        interval = setInterval(tick, 1000/120);
+    }
 }
 
-export function play() {
-    interval = setInterval(tick, 1000/120);
+export function playPause() {
+    if (interval) {
+        clearInterval(interval);
+        interval = 0;
+    } else {
+        interval = setInterval(tick, 1000/120);
+    }
 }

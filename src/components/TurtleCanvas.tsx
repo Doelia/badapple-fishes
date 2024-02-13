@@ -78,13 +78,11 @@ export default function TurtleCanvas({entities, map}: {entities: Entities, map: 
 
     return (
         <>
-            <div id="mapcanvas">
             <div id="canvas_assets" style={{display: 'none'}}>
                 <img src={beeBlack} alt="" ref={beeBlackRef} />
                 <img src={beeWhite} alt="" ref={beeWhiteRef} />
             </div>
             <canvas ref={refCanvas}></canvas>
-            </div>
         </>
     )
 }

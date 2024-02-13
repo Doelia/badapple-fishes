@@ -10,7 +10,6 @@ export default function Profiler() {
 
     const timeToCompute = usePerformanceStore.getState().timeToCompute.toFixed(2);
     const nMaxCompute = usePerformanceStore.getState().nMaxCompute;
-    const mustBeUnder = (1000/240).toFixed(2);
 
     const timeToRender = usePerformanceStore.getState().timeToRender.toFixed(2);
     const renderMustBeUnder = (1000/60).toFixed(2);
@@ -31,11 +30,11 @@ export default function Profiler() {
     }, []);
 
     return (
-        <div>
-            <div>time to compute: {timeToCompute}ms ({nMaxCompute} times) ({mustBeUnder} max)</div>
-            <div>time to render: {timeToRender}ms ({renderMustBeUnder} max) </div>
+        <pre>
+            <div>time to compute: {timeToCompute}ms ({nMaxCompute}/120)</div>
+            <div>time to render: {timeToRender}ms ({renderMustBeUnder}ms max) </div>
             <div>time to render video: {timeToRenderVideo}ms</div>
-        </div>
+        </pre>
     )
 
 

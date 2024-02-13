@@ -20,8 +20,8 @@ export type ParametersStore = {
     black_vision_distance: number,
     setBlackVisionDistance: (v: number) => void,
 
-    videoPosition: 'corner' | 'background' | 'live',
-    setVideoPosition: (v: 'corner' | 'background' | 'live') => void,
+    videoPosition: 'separate' | 'background' | 'live',
+    setVideoPosition: (v: 'separate' | 'background' | 'live') => void,
 
     renderTurtles: boolean,
     toggleRenderTurtles: () => void,
@@ -41,7 +41,7 @@ export const useParametersStore: UseBoundStore<StoreApi<ParametersStore>> = crea
     turtleSize: 10,
     setTurtleSize: (turtleSize: number) => set(() => ({ turtleSize })),
 
-    population: 5000,
+    population: 2000,
     setPopulation: (population: number) => set(() => ({ population })),
 
     white_vision_distance: 30,
@@ -50,8 +50,8 @@ export const useParametersStore: UseBoundStore<StoreApi<ParametersStore>> = crea
     black_vision_distance: 5,
     setBlackVisionDistance: (black_vision_distance: number) => set(() => ({ black_vision_distance })),
 
-    videoPosition: 'live',
-    setVideoPosition: (videoPosition: 'corner' | 'background' | 'live') => set(() => ({ videoPosition })),
+    videoPosition: 'separate',
+    setVideoPosition: (videoPosition: 'separate' | 'background' | 'live') => set(() => ({ videoPosition })),
 
     renderTurtles: true,
     toggleRenderTurtles: () => set(({ renderTurtles }) => ({ renderTurtles: !renderTurtles })),

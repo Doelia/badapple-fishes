@@ -15,8 +15,8 @@ export default function Video({map}: {map: MapRef}) {
 
     let style = {};
     switch (videoPosition) {
-        case 'corner':
-            style = {position: 'fixed', bottom: 0, right: 0, zoom: .5 };
+        case 'separate':
+            style = {position: 'relative', zoom: 1 };
             break;
         case 'background':
             style = {position: 'fixed', top: 0, left: 0, zoom: ZOOM, opacity: .1};
@@ -49,7 +49,7 @@ export default function Video({map}: {map: MapRef}) {
 
     return (
         <>
-            <video id="video" src="/badapple.mp4" controls ref={refVideo} autoplay={true} style={style}></video>
+            <video id="video" src="/badapple.mp4" controls ref={refVideo} autoplay style={style} muted></video>
             <canvas ref={refCanvas} style={{opacity: 0, background: 'white', display: 'none'}}></canvas>
         </>
     )

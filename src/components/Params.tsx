@@ -1,20 +1,14 @@
 import {useId} from "react";
 import {useParametersStore} from "../stores/parametersStore.ts";
-import Profiler from "./Profiler.tsx";
-import {pause, play} from "../engine/engine.ts";
-
 
 export default function Params() {
 
     const store = useParametersStore();
 
     return (
-        <div style={{position: 'fixed', bottom: 0, left: 0}}>
-            <div>
-                <button onClick={pause}>pause</button>
-                <button onClick={play}>play</button>
-            </div>
-            <Profiler></Profiler>
+        <div style={{}}>
+
+
             <ParameterSlider title="speed" min={1} max={10} value={store.speed} setValue={store.setSpeed} />
             <ParameterSlider title="white vision distance" min={1} max={100} value={store.white_vision_distance} setValue={store.setWhiteVisionDistance} />
             <ParameterSlider title="black vision distance" min={1} max={30} value={store.black_vision_distance} setValue={store.setBlackVisionDistance} />
@@ -22,19 +16,23 @@ export default function Params() {
             <ParameterSlider title="wiggle" min={0} max={45} value={store.wiggle} setValue={store.setWiggle} />
             <ParameterSlider title="turtle size" min={1} max={30} value={store.turtleSize} setValue={store.setTurtleSize} />
 
-            <div>
-                <label htmlFor="videoPosition">Video position</label>
+            <div class="d-flex gap-2">
+                <input id="toggleRenderTurtles" type="checkbox" checked={store.renderTurtles} onChange={() => store.toggleRenderTurtles()} />
+                <label htmlFor="toggleRenderTurtles">Render fishes</label>
+            </div>
+
+            <div class="d-flex gap-2">
+                <input id="toggleRenderDebugMode" type="checkbox" checked={store.renderDebugMode} onChange={() => store.toggleRenderDebugMode()} />
+                <label htmlFor="toggleRenderDebugMode">Render debug mode</label>
+            </div>
+
+            <div className="d-flex gap-2">
+                <label htmlFor="videoPosition">Video position:</label>
                 <select value={store.videoPosition} onChange={(e: any) => store.setVideoPosition(e.target.value as any)}>
-                    <option value="corner">corner</option>
+                    <option value="separate">separate</option>
                     <option value="background">background</option>
                     <option value="live">live</option>
                 </select>
-            </div>
-            <div>
-                <input type="checkbox" checked={store.renderTurtles} onChange={() => store.toggleRenderTurtles()} /> Render turtles
-            </div>
-            <div>
-                <input type="checkbox" checked={store.renderDebugMode} onChange={() => store.toggleRenderDebugMode()} /> Render debug mode
             </div>
         </div>
     );
@@ -54,10 +52,12 @@ function ParameterSlider({title, min, max, value, setValue, disabled=false}: Par
     const id = useId();
 
     return (
-        <div id="params" style={{display: 'flex'}}>
+        <div id="params" class="d-flex">
             <input disabled={disabled} className="me-3" type="range" min={min} max={max} value={value} id={id} onChange={(e: any) => setValue(e.target.value)} />
-            {title}:
-            {value}
+            <div>
+                <strong>{value} </strong>
+                <span>{title}</span>
+            </div>
         </div>
     )
 
