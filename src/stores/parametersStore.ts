@@ -25,6 +25,9 @@ export type ParametersStore = {
 
     renderTurtles: boolean,
     toggleRenderTurtles: () => void,
+
+    renderDebugMode: boolean,
+    toggleRenderDebugMode: () => void,
 }
 
 export const useParametersStore: UseBoundStore<StoreApi<ParametersStore>> = create((set): ParametersStore => ({
@@ -52,6 +55,9 @@ export const useParametersStore: UseBoundStore<StoreApi<ParametersStore>> = crea
 
     renderTurtles: true,
     toggleRenderTurtles: () => set(({ renderTurtles }) => ({ renderTurtles: !renderTurtles })),
+
+    renderDebugMode: false,
+    toggleRenderDebugMode: () => set(({ renderDebugMode }) => ({ renderDebugMode: !renderDebugMode })),
 
 }))
 

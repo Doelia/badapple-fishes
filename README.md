@@ -5,7 +5,7 @@ Made with HTML Canvas + React.
 
 ## Final vidéo
 
-[![name](_docs/video.png)](https://www.youtube.com/watch?v=YEBbbugNAVs&ab_channel=St%C3%A9phaneWouters)
+[![name](_docs/video.png)](https://www.youtube.com/watch?v=bKs2jukK-ME&ab_channel=St%C3%A9phaneWouters)
 
 ## Live simulation
 

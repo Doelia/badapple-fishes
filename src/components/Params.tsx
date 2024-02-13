@@ -1,7 +1,7 @@
 import {useId} from "react";
 import {useParametersStore} from "../stores/parametersStore.ts";
-import {pause, play} from "../engine/Engine.ts";
 import Profiler from "./Profiler.tsx";
+import {pause, play} from "../engine/engine.ts";
 
 
 export default function Params() {
@@ -32,6 +32,9 @@ export default function Params() {
             </div>
             <div>
                 <input type="checkbox" checked={store.renderTurtles} onChange={() => store.toggleRenderTurtles()} /> Render turtles
+            </div>
+            <div>
+                <input type="checkbox" checked={store.renderDebugMode} onChange={() => store.toggleRenderDebugMode()} /> Render debug mode
             </div>
         </div>
     );

@@ -39,7 +39,7 @@ export default function TurtleCanvas({entities, map}: {entities: Entities, map: 
 
     function render() {
 
-        let debugMode = false;
+        let debugMode = useParametersStore.getState().renderDebugMode;
 
         const start = performance.now();
 
