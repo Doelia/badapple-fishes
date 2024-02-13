@@ -3,7 +3,7 @@ import {toRadians} from "../engine/fnTrigo.ts";
 import {HEIGHT, WIDTH, ZOOM} from "../globals.ts";
 import beeBlack from "../assets/fish.png";
 import beeWhite from "../assets/fish_white.png";
-import {Entities, MapRef} from "../types.ts";
+import {Entities, MapRef} from "../objects/types.ts";
 import {usePerformanceStore} from "../stores/performancesStore.ts";
 import {useParametersStore} from "../stores/parametersStore.ts";
 import {useNextFrame} from "../hooks/useNextFrame.ts";
@@ -39,6 +39,8 @@ export default function TurtleCanvas({entities, map}: {entities: Entities, map: 
 
     function render() {
 
+        let debugMode = false;
+
         const start = performance.now();
 
         const canvas = refCanvas.current;
@@ -47,9 +49,25 @@ export default function TurtleCanvas({entities, map}: {entities: Entities, map: 
         ctx.fillStyle = 'black';
         let size = useParametersStore.getState().turtleSize;
         for (let t of entities.ref.fishes) {
-            let dot = map.ref.project(t);
-            let img = (dot && dot.livable) ? beeBlackRef.current : beeWhiteRef.current;
-            rotateAndPaintImage(ctx, img, toRadians(t.angle), t.x*ZOOM, t.y*ZOOM, size, size);
+
+            if (debugMode) {
+                let speed = t.speed; // from 0.2 to 4
+
+                if (speed > 1) {
+                    let red =  speed * 255;
+                    ctx.fillStyle = `rgb(${red}, 0, 0)`;
+                } else if (speed < 1) {
+                    // let green = 255 - speed * 255;
+                    ctx.fillStyle = `green`;
+                } else {
+                    ctx.fillStyle = 'black';
+                }
+                ctx.fillRect(t.x*ZOOM, t.y*ZOOM, size, size);
+            } else {
+                let dot = map.ref.project(t);
+                let img = (dot && dot.livable) ? beeBlackRef.current : beeWhiteRef.current;
+                rotateAndPaintImage(ctx, img, toRadians(t.angle), t.x*ZOOM, t.y*ZOOM, size, size);
+            }
         }
 
         const end = performance.now();

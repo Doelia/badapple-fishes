@@ -1,5 +1,5 @@
-import {Entities, MapRef} from "../types.ts";
-import {Fish} from "./Fish.ts";
+import {Entities, MapRef} from "../objects/types.ts";
+import {Fish} from "../objects/Fish.ts";
 import {useParametersStore} from "../stores/parametersStore.ts";
 import {usePerformanceStore} from "../stores/performancesStore.ts";
 import {HEIGHT, WIDTH} from "../globals.ts";

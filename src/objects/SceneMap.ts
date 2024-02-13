@@ -1,4 +1,4 @@
-import {DotMap, MapInterface, Point} from "../types.ts";
+import {DotMap, MapInterface, Point} from "./types.ts";
 import {HEIGHT, WIDTH} from "../globals.ts";
 
 export class SceneMap implements MapInterface {

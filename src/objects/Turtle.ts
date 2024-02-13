@@ -1,4 +1,4 @@
-import {cos, sin, substrateAngles} from "./fnTrigo.ts";
+import {cos, sin, substrateAngles} from "../engine/fnTrigo.ts";
 import {useParametersStore} from "../stores/parametersStore.ts";
 
 export class Turtle {
@@ -12,6 +12,36 @@ export class Turtle {
     x;
     y;
     angle = 0;
+    speed = 1;
+
+    reguleSpeed() {
+        if (this.speed > .9 && this.speed < 1.1) {
+            return this.speed = 1;
+        }
+
+        if (this.speed > 1) {
+            this.decrSpeed();
+        } else {
+            this.incrSpeed();
+        }
+    }
+
+    incrSpeed() {
+        this.speed *= 1.05;
+    }
+
+    decrSpeed() {
+        this.speed /= 1.005;
+    }
+
+    normalizeSpeed() {
+        if (this.speed > 2) {
+            this.speed = 2;
+        }
+        if (this.speed < .5) {
+            this.speed = .5;
+        }
+    }
 
     wiggle(max_angle: number) {
         this.angle += Math.random() * max_angle;

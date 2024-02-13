@@ -1,5 +1,5 @@
 import {useEffect, useRef} from "preact/hooks";
-import {MapRef} from "../types.ts";
+import {MapRef} from "../objects/types.ts";
 import {HEIGHT, WIDTH, ZOOM} from "../globals.ts";
 import {useParametersStore} from "../stores/parametersStore.ts";
 import {usePerformanceStore} from "../stores/performancesStore.ts";

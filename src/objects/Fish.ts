@@ -1,7 +1,7 @@
 import {Turtle} from "./Turtle.ts";
 import {HEIGHT, WIDTH} from "../globals.ts";
-import {MapRef} from "../types.ts";
-import {angleTo, cos, sin} from "./fnTrigo.ts";
+import {MapRef} from "./types.ts";
+import {angleTo, cos, sin} from "../engine/fnTrigo.ts";
 import {useParametersStore} from "../stores/parametersStore.ts";
 
 export class Fish extends Turtle {
@@ -26,8 +26,6 @@ export class Fish extends Turtle {
 
         const isInBlack = myDot.livable;
 
-        let speed = 1;
-
 
         const around = this.getAroundPositions(isInBlack)
             .map(p => map.ref.project(p))
@@ -36,30 +34,33 @@ export class Fish extends Turtle {
         if (myDot.livable) { // Je suis dans le noir
             const whites = map.ref.filterLivable(around, false);
             if (whites.length) {
-                speed = .5;
                 let angle = angleTo(whites[0], this);
                 this.moveToAngleAtMost(angle, 80);
             } else {
                 this.wiggle(wiggle);
             }
+            this.reguleSpeed();
         } else { // je suis dans le blanc
-            this.wiggle(wiggle);
             const blacks = map.ref.filterLivable(around, true);
             if (blacks.length) {
-                speed = 2;
+                this.incrSpeed();
                 let angle = angleTo(this, blacks[0]);
                 this.moveToAngleAtMost(angle, 360);
             } else {
+                this.reguleSpeed();
                 this.wiggle(wiggle);
             }
         }
 
-        this.forward(speed);
+        this.normalizeSpeed();
+
+
+        this.forward(this.speed);
     }
 
     getAroundPositions(isInBlack: boolean) {
 
-        let VISION_DISTANCE = 0;
+        let VISION_DISTANCE: number;
         if (isInBlack) {
             VISION_DISTANCE = useParametersStore.getState().black_vision_distance
         } else {

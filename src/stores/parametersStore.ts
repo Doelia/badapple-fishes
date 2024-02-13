@@ -35,7 +35,7 @@ export const useParametersStore: UseBoundStore<StoreApi<ParametersStore>> = crea
     speed: 4,
     setSpeed: (speed: number) => set(() => ({ speed })),
 
-    turtleSize: 6,
+    turtleSize: 10,
     setTurtleSize: (turtleSize: number) => set(() => ({ turtleSize })),
 
     population: 5000,

@@ -1,4 +1,4 @@
-import {Point} from "../types.ts";
+import {Point} from "../objects/types.ts";
 
 export function toRadians(degrees: number) {
     return degrees * Math.PI / 180;

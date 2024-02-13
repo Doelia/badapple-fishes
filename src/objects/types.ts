@@ -1,4 +1,4 @@
-import {Fish} from "./engine/Fish.ts";
+import {Fish} from "./Fish.ts";
 
 export interface Entities {
     ref: {
